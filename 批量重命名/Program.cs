@@ -5,12 +5,14 @@ while (true)
 {
     Console.WriteLine("Hello, World!");
     Console.Write("Input work dir: ");
-    string path = Console.ReadLine();
+    var path = Console.ReadLine();
+    if (path is null) break;
     if (path == "" || path.Equals("exit")) break;
     //Console.Write("Input files num: ");
     //int num = int.Parse(Console.ReadLine());
     Console.Write("Input regex pattern: ");
-    string regex_pattern = Console.ReadLine();
+    var regex_pattern = Console.ReadLine();
+    if (regex_pattern is null) break;
     List<FileInfo> files = new();
     foreach (FileInfo fi in new DirectoryInfo(path).GetFiles())
         if (Regex.IsMatch(fi.Name, regex_pattern))
@@ -19,7 +21,8 @@ while (true)
             Console.WriteLine($"\t{fi.Name}");
         }
     Console.Write("Input rename pattern(%i%): ");
-    string rename_pattern = Console.ReadLine();
+    var rename_pattern = Console.ReadLine();
+    if (rename_pattern is null) break;
     int index = 1;
     foreach (FileInfo item in files)
     {
